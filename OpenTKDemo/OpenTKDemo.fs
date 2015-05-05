@@ -16,7 +16,8 @@ type OpenTKExample() =
 
     override this.OnResize e =
         base.OnResize(e)
-        GL.Viewport(0, 0, 800, 600)
+        // use all the whole area to paint
+        GL.Viewport(this.ClientRectangle.X, this.ClientRectangle.Y, this.ClientRectangle.Width, this.ClientRectangle.Height)
         GL.MatrixMode(MatrixMode.Projection)
         GL.LoadIdentity()
         GL.Ortho(-1.0, 1.0, -1.0, 1.0, 0.0, 4.0)
@@ -28,10 +29,9 @@ type OpenTKExample() =
 
         GL.Begin(BeginMode.Triangles)
 
-
-        GL.Color4(Color4.Ivory)
+        GL.Color4(Color4.Beige)
         GL.Vertex2(-1.0f, -1.0f)
-        GL.Color4(Color4.Crimson)
+        GL.Color4(Color4.DarkRed)
         GL.Vertex2(1.0f, -1.0f)
         GL.Color4(Color4.SpringGreen)
         GL.Vertex2(0.0f, 1.0f)
