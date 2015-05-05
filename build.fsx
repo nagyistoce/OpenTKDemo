@@ -14,18 +14,10 @@ Target "Build" (fun _ ->
     |> Log "Build-Output: "
 )
 
-Target "Tests" (fun _ ->
-    !! "/**/*.exe"
-//    ++ "/**/Test.*.dll"
-    |> SetBaseDir resultsDir
-    |> NUnitParallel (fun defaults -> { defaults with Framework = "net-4.5"})
-)
-
 Target "Default" DoNothing
 
 "Clean"
     ==> "Build"
-    =?> ("Tests", not <| hasBuildParam "NoTests")
     ==> "Default"
 
 RunTargetOrDefault "Default"
